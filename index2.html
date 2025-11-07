@@ -1,0 +1,3654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogicLift — Learn. Practice. Master Logic.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Unique brand font for LogicLift */
+        .brand-name, .logo-text, .site-title, .brand span {
+          font-family: 'Orbitron', sans-serif !important;
+          font-weight: 800;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          background: linear-gradient(90deg, #ff6ec4, #73f5e2);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: 0 0 8px rgba(255,255,255,0.2);
+        }
+        :root {
+            /* Color psychology palettes: calm, creativity, growth */
+            --primary-calm: #545d66;
+            --primary-creativity: #8e54e9;
+            --primary-growth: #171a18;
+            --secondary-calm: #1452a0;
+            --secondary-creativity: #131314;
+            --secondary-growth: #5d7e78;
+            --accent1: #3e1f1f;
+            --accent2: #584941;
+            --accent3: #414e4c;
+            --dark: #191932;
+            --light: #4f5356;
+            --success: #4b6350;
+            --warning: #666153;
+            --danger: #9c686d;
+            --info: #17a2b8;
+            --glass-bg: rgba(30,36,64,0.60);
+            --glass-border: rgba(255,255,255,0.18);
+        }
+
+        * {
+            font-style: italic !important;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* ====== DARK & COLD THEME ====== */
+        body {
+          background: linear-gradient(135deg, #0a0f1f, #111b2f, #16213e);
+          background-size: 400% 400%;
+          animation: coldGradient 20s ease infinite;
+          color: #e0e4f0;
+          font-family: "Inter", sans-serif;
+          margin: 0;
+          overflow-x: hidden;
+        }
+
+        /* Animated cold gradient background */
+        @keyframes coldGradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* Glass panels for all cards and modals */
+        .card, .feature-section, .profile-card, .store-preview, .tasks-card, .modal-panel {
+          background: rgba(20, 30, 50, 0.55);
+          backdrop-filter: blur(16px);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 14px;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+          color: #f5f7fa;
+          transition: transform 0.3s ease, background 0.4s ease;
+        }
+
+        .card:hover, .feature-section:hover {
+          transform: translateY(-4px);
+          background: rgba(25, 40, 70, 0.7);
+        }
+
+        /* 🌌 Dark Modern Button with Subtle Sparkles */
+        button, .btn {
+          position: relative;
+          background: rgba(20, 25, 35, 0.8);
+          color: #ffffff;
+          font-weight: 600;
+          padding: 12px 28px;
+          border-radius: 14px;
+          font-size: 1rem;
+          letter-spacing: 0.4px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          overflow: hidden;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Sparkle effect */
+        button::before, .btn::before {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255,255,255,0.4) 2px, transparent 3px);
+          background-size: 40px 40px;
+          animation: sparkleMove 10s linear infinite;
+          opacity: 0.2;
+          z-index: 1;
+        }
+
+        @keyframes sparkleMove {
+          from { transform: translate(0, 0); }
+          to { transform: translate(40px, 40px); }
+        }
+
+        /* Hover effect with soft glow */
+        button:hover, .btn:hover {
+          background: rgba(30, 35, 50, 0.9);
+          box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+          transform: translateY(-2px);
+        }
+
+        button:active, .btn:active {
+          transform: scale(0.98);
+          box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+        }
+
+        /* Top navigation and branding */
+        header {
+          background: rgba(15, 25, 45, 0.7);
+          backdrop-filter: blur(14px);
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .brand span {
+          font-family: 'Orbitron', sans-serif;
+          font-weight: 800;
+          color: #8fdcff;
+          text-shadow: 0 0 10px rgba(0,255,255,0.4);
+        }
+
+        /* Links */
+        a, a:visited {
+          color: #7ad1ff;
+          text-decoration: none;
+        }
+        a:hover {
+          color: #a8e6ff;
+          text-shadow: 0 0 8px rgba(120,220,255,0.5);
+        }
+
+        /* Inputs */
+        input, textarea {
+          background: rgba(25, 35, 55, 0.6);
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 8px;
+          padding: 10px;
+        }
+        input:focus, textarea:focus {
+          border-color: #7ad1ff;
+          outline: none;
+          box-shadow: 0 0 8px rgba(120,220,255,0.3);
+        }
+
+        /* Glow for important sections */
+        .section-title {
+          color: #c9eaff;
+          text-shadow: 0 0 12px rgba(120,220,255,0.4);
+        }
+
+        /* Scrollbar for dark theme */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+          background: rgba(10,15,25,0.9);
+        }
+        ::-webkit-scrollbar-thumb {
+          background: linear-gradient(180deg, #4cc9f0, #4895ef);
+          border-radius: 10px;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 25% 75%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            75% {
+                background-position: 75% 25%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px) saturate(1.4);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.28);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 2.2rem;
+          font-weight: 800;
+          background: linear-gradient(120deg, #8e54e9, #43e97b, #4a90e2);
+          background-size: 300% 300%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-shadow:
+            0 0 10px rgba(142,84,233,0.4),
+            0 0 20px rgba(67,233,123,0.2),
+            0 0 30px rgba(74,144,226,0.2);
+          animation: metallicShift 6s ease-in-out infinite;
+          transition: all 0.4s ease;
+        }
+
+        @keyframes metallicShift {
+          0% { background-position: 0% 50%; filter: hue-rotate(0deg); }
+          50% { background-position: 100% 50%; filter: hue-rotate(180deg); }
+          100% { background-position: 0% 50%; filter: hue-rotate(360deg); }
+        }
+
+        .logo:hover {
+          transform: rotateY(10deg) scale(1.08);
+          text-shadow:
+            0 0 20px rgba(142,84,233,0.7),
+            0 0 40px rgba(67,233,123,0.4),
+            0 0 60px rgba(74,144,226,0.4);
+        }
+
+        .logo i {
+          font-size: 2.5rem;
+          color: #43e97b;
+          filter: drop-shadow(0 0 6px #8e54e9);
+          transition: transform 0.4s ease;
+        }
+
+        .logo:hover i {
+          transform: rotate(-15deg) scale(1.2);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.01em;
+        }
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+            transition: left 0.5s cubic-bezier(.4,2,.3,1);
+        }
+        nav a:hover::before {
+            left: 100%;
+        }
+        nav a:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 16px 0 rgba(67,233,123,0.12);
+            color: #fff;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* Brighter, Glowing Nav/Home/Learn/Practice/Progress/Community Buttons */
+        .nav-btn, 
+        .home-btn, 
+        .learn-btn, 
+        .practice-btn, 
+        .progress-btn, 
+        .community-btn {
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.25);
+          color: #fff;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+          padding: 0.8rem 1.6rem;
+          border-radius: 18px;
+          backdrop-filter: blur(18px);
+          box-shadow: 0 0 12px rgba(255, 255, 255, 0.1),
+                      0 0 25px rgba(255, 255, 255, 0.05);
+          transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, 
+        .home-btn:hover, 
+        .learn-btn:hover, 
+        .practice-btn:hover, 
+        .progress-btn:hover, 
+        .community-btn:hover {
+          background: rgba(255, 255, 255, 0.18);
+          border-color: rgba(255, 255, 255, 0.35);
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.2),
+                      0 0 40px rgba(255, 255, 255, 0.15);
+          transform: translateY(-1px);
+        }
+
+        .nav-btn:active, 
+        .home-btn:active, 
+        .learn-btn:active, 
+        .practice-btn:active, 
+        .progress-btn:active, 
+        .community-btn:active {
+          transform: scale(0.98);
+          box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes softGlow {
+          0% { box-shadow: 0 0 12px rgba(255,255,255,0.15); }
+          50% { box-shadow: 0 0 20px rgba(255,255,255,0.25); }
+          100% { box-shadow: 0 0 12px rgba(255,255,255,0.15); }
+        }
+
+        .home-btn, 
+        .learn-btn, 
+        .practice-btn, 
+        .progress-btn, 
+        .community-btn {
+          animation: softGlow 3s ease-in-out infinite;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px) saturate(1.6);
+            border-radius: 24px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle, rgba(74,144,226,0.10) 0%, transparent 80%);
+            animation: heroPulse 10s infinite alternate;
+            z-index: 0;
+        }
+        @keyframes heroPulse {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary-calm), var(--primary-creativity), var(--primary-growth), var(--secondary-calm));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: heroGradientShift 8s ease-in-out infinite;
+        }
+        @keyframes heroGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero p {
+            font-size: 1.22rem;
+            max-width: 720px;
+            margin: 0 auto 2rem;
+            color: rgba(255,255,255,0.87);
+            line-height: 1.68;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.12);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Glassmorphic Panel for features and sections */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(35px) saturate(1.8);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.36s cubic-bezier(.4,2,.3,1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+            box-shadow: none;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-calm), var(--primary-creativity), var(--primary-growth));
+            opacity: 0.93;
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.36s;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.035);
+            box-shadow: 0 15px 40px rgba(142,84,233,0.11), 0 2px 20px rgba(67,233,123,0.07);
+            background: rgba(255,255,255,0.10);
+            border-color: var(--accent3);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(120deg, var(--primary-calm), var(--primary-creativity), var(--primary-growth));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: iconGradientShift 6s ease-in-out infinite;
+        }
+        @keyframes iconGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .assessment-section {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px) saturate(1.6);
+            border-radius: 18px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--accent2), var(--accent1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .assessment-options {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .level-option {
+            background: rgba(255,255,255,0.06);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 200px;
+            transition: all 0.32s cubic-bezier(.4,2,.3,1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px 0 rgba(67,233,123,0.05);
+        }
+        .level-option:hover, .level-option.selected {
+            transform: scale(1.07);
+            border-color: var(--accent3);
+            box-shadow: 0 10px 32px rgba(67,233,123,0.12);
+            background: rgba(67,233,123,0.10);
+        }
+
+        .level-option h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-option p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .language-selection {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .language-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.22);
+            border-radius: 30px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .language-btn:hover {
+            background: rgba(142,84,233,0.14);
+            transform: translateY(-3px) scale(1.07);
+            color: #fff;
+        }
+        .language-btn.active {
+            background: linear-gradient(90deg, var(--primary-creativity), var(--primary-growth));
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 2px 12px 0 rgba(142,84,233,0.09);
+        }
+
+        .progress-section {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px) saturate(1.6);
+            border-radius: 18px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .progress-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(35px) saturate(1.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            width: 200px;
+            transition: all 0.3s cubic-bezier(.4,2,.3,1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: none;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.04);
+            background: rgba(67,233,123,0.13);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary-calm), var(--primary-creativity), var(--primary-growth));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: statGradientShift 6s ease-in-out infinite;
+        }
+        @keyframes statGradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px) saturate(1.6);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent3);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Animation for background elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(142,84,233,0.16), transparent 80%);
+            animation: float 18s infinite linear;
+            mix-blend-mode: lighten;
+            filter: blur(1.5px);
+        }
+        @keyframes float {
+            0% {
+                transform: translate(0,0) rotate(0deg) scale(1);
+                filter: hue-rotate(0deg) blur(1.5px);
+            }
+            50% {
+                transform: translate(80px,80px) rotate(180deg) scale(1.08);
+                filter: hue-rotate(180deg) blur(2.5px);
+            }
+            100% {
+                transform: translate(160px,160px) rotate(360deg) scale(1);
+                filter: hue-rotate(360deg) blur(1.5px);
+            }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: linear-gradient(120deg, var(--primary-calm) 0%, var(--dark) 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            border: 1.5px solid var(--glass-border);
+            box-shadow: 0 2px 20px 0 rgba(142,84,233,0.16);
+            backdrop-filter: blur(18px) saturate(1.13);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--accent3);
+        }
+
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-content input, .modal-content select {
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+        }
+
+        .modal-content button[type="submit"] {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content button[type="submit"]:hover {
+            transform: translateY(-2px);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .notification.success {
+            background: var(--success);
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification.info {
+            background: var(--info);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .assessment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            .progress-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <style>
+#output {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #00ffff;
+  border-radius: 10px;
+  padding: 25px;
+  width: 80%;
+  margin: 30px auto;
+  font-family: monospace;
+  font-size: 15px;
+  white-space: pre-wrap;
+  text-align: left;
+  line-height: 1.5;
+  color: #b3f0ff;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  min-height: 200px;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#output.visible {
+  opacity: 1;
+}
+#output:empty::before {
+  content: "Click a button to view the file content here...";
+  color: #777;
+  font-style: italic;
+}
+#output.typing::after {
+  content: "|";
+  animation: blink 0.8s infinite;
+  color: #00ffff;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+    </style>
+    <style>
+    /* === Subtle Bubble Hover Effect for All Buttons === */
+    button, .btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before, button::after, 
+    .btn::before, .btn::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      animation: none;
+    }
+
+    button:hover::before, .btn:hover::before {
+      width: 10px;
+      height: 10px;
+      top: 100%;
+      left: 50%;
+      opacity: 0.5;
+      background: rgba(0, 255, 255, 0.4);
+      animation: bubble-rise 2s ease-out infinite;
+    }
+
+    button:hover::after, .btn:hover::after {
+      width: 8px;
+      height: 8px;
+      top: 100%;
+      left: 40%;
+      opacity: 0.4;
+      background: rgba(255, 0, 255, 0.3);
+      animation: bubble-rise 2.5s ease-out infinite;
+    }
+
+    @keyframes bubble-rise {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translateY(-20px) scale(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-40px) scale(1.2);
+        opacity: 0;
+      }
+    }
+    </style>
+    <style>
+    /* Apply Orbitron font across the website */
+    body, h1, h2, h3, h4, h5, h6, p, button, .btn, input, textarea, a {
+      font-family: 'Orbitron', sans-serif !important;
+      letter-spacing: 0.5px;
+    }
+    </style>
+    <style>
+    /* Registration Section Styling */
+    .registration-section {
+      margin: 5rem auto;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .register-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      background: rgba(20, 30, 50, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .register-card input {
+      padding: 10px 14px;
+      font-size: 1rem;
+    }
+
+    .register-card button {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Default cursor */
+    body, button, input, a {
+      cursor: default;
+    }
+
+    /* Popup Overlay Styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 9999;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .popup-box {
+      background: linear-gradient(135deg, #101820, #18222e);
+      color: #ffffff;
+      padding: 2.5rem 3rem;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 255, 200, 0.3);
+      text-align: center;
+      animation: popupIn 0.4s ease forwards;
+      max-width: 380px;
+      width: 90%;
+    }
+
+    .popup-box h3 {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+      color: #76e3c1;
+    }
+
+    .popup-box p {
+      color: #d1d1d1;
+      margin-bottom: 1.5rem;
+    }
+
+    .popup-box button {
+      background: #00bfa6;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .popup-box button:hover {
+      background: #00dcb6;
+    }
+
+    @keyframes popupIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    </style>
+    <style>
+    /* Mini leaderboard flip effect */
+    #learningLeaderboardBtn {
+      position: relative;
+      transition: all 0.6s ease;
+      overflow: hidden;
+      min-width: 160px;
+      background: linear-gradient(90deg, #5b86e5, #36d1dc);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+    }
+
+    #learningLeaderboardBtn.flipped {
+      background: rgba(30, 30, 30, 0.8);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .mini-leaderboard {
+      padding: 10px;
+      text-align: left;
+    }
+
+    .mini-leaderboard h4 {
+      margin-bottom: 8px;
+      color: #ffd166;
+    }
+
+    .mini-leaderboard ul {
+      list-style: none;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .mini-leaderboard li {
+      margin: 4px 0;
+      color: #e0e0e0;
+    }
+    </style>
+        <section class="language-section">
+            <!-- Language selection UI and concepts will appear here -->
+        </section>
+        <div style="text-align:center; margin:2rem 0 2rem;">
+          <button id="roadmapGuidanceBtn" class="btn primary">Roadmap & Guidance</button>
+          <button id="learningLeaderboardBtn" class="btn primary">🏆 Leaderboard</button>
+        </div>
+    <script>
+    // Registration form with dynamic popup and section removal
+    document.addEventListener("DOMContentLoaded", () => {
+      const registerForm = document.getElementById("registerForm");
+      const popup = document.getElementById("successPopup");
+      const closePopup = document.getElementById("closePopup");
+
+      if (registerForm) {
+        registerForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
+
+          if (!name || !email || !password) {
+            alert("Please fill in all the details before registering!");
+            return;
+          }
+
+          // Show success popup
+          popup.classList.add("active");
+
+          // Smoothly fade out the registration section before removing
+          const section = registerForm.closest("section");
+          if (section) {
+            section.style.transition = "opacity 0.6s ease";
+            section.style.opacity = "0";
+            setTimeout(() => section.remove(), 600);
+          }
+
+          registerForm.reset();
+        });
+      }
+
+      if (closePopup) {
+        closePopup.addEventListener("click", () => {
+          popup.classList.remove("active");
+        });
+      }
+    });
+    // ====== LEARNING FEATURE BUTTON INTERACTIONS ======
+    document.addEventListener('click', (e) => {
+      // --- ROADMAP & GUIDANCE BUTTON ---
+      if (e.target && e.target.id === 'roadmapGuidanceBtn') {
+        const languageSection = document.querySelector('.language-section');
+        if (languageSection) {
+          languageSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => {
+            alert('Please select a programming language to view its roadmap!');
+          }, 700);
+        }
+      }
+
+      // --- LEADERBOARD BUTTON (LEARNING FEATURES SECTION) ---
+      if (e.target && e.target.id === 'learningLeaderboardBtn') {
+        const leaderboardBtn = e.target;
+        // prevent multiple flips
+        if (leaderboardBtn.classList.contains('flipped')) {
+          leaderboardBtn.classList.remove('flipped');
+          leaderboardBtn.innerHTML = '🏆 Leaderboard';
+          return;
+        }
+
+        leaderboardBtn.classList.add('flipped');
+        const members = ['Shiva', 'Karan', 'Dabeer', 'Riya', 'Aarav', 'Meera', 'Ishaan', 'Dev', 'Ananya', 'Rohit'];
+        const leaderboardHTML = `
+          <div class="mini-leaderboard">
+            <h4>Top Learners</h4>
+            <ul>
+              ${members.map((name, i) => 
+                `<li>${i + 1}. ${name} — ${Math.floor(Math.random() * 20 + 1)} streaks • ${Math.floor(Math.random() * 200 + 50)} Qs</li>`
+              ).join('')}
+            </ul>
+            <button class="btn tiny" id="closeLeaderboard">Close</button>
+          </div>
+        `;
+        leaderboardBtn.innerHTML = leaderboardHTML;
+      }
+
+      // --- CLOSE MINI LEADERBOARD ---
+      if (e.target && e.target.id === 'closeLeaderboard') {
+        const parentBtn = e.target.closest('#learningLeaderboardBtn');
+        if (parentBtn) {
+          parentBtn.classList.remove('flipped');
+          parentBtn.innerHTML = '🏆 Leaderboard';
+        }
+      }
+    });
+    </script>
+    <!-- Roadmap Overlay CSS -->
+    <style>
+    /* Roadmap Overlay */
+    .roadmap-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.95);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: auto;
+      backdrop-filter: blur(10px);
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .roadmap-container {
+      width: 90%;
+      max-width: 1000px;
+      text-align: center;
+      position: relative;
+    }
+
+    .roadmap-container h2 {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px; right: 20px;
+      font-size: 1.5em;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .close-btn:hover { transform: scale(1.2); }
+
+    .roadmap-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+    }
+
+    .flow-step {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 15px 25px;
+      border-radius: 12px;
+      width: 70%;
+      color: #f0f0f0;
+      font-size: 1.1em;
+      position: relative;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+    }
+    .flow-step:hover {
+      box-shadow: 0 0 20px rgba(255,255,255,0.25);
+      transform: scale(1.03);
+    }
+
+    /* Connecting arrows */
+    .flow-step::after {
+      content: "↓";
+      position: absolute;
+      bottom: -25px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+      color: rgba(255,255,255,0.4);
+    }
+    .flow-step:last-child::after {
+      content: "";
+    }
+
+    /* Scroll style */
+    .roadmap-overlay::-webkit-scrollbar {
+      width: 8px;
+    }
+    .roadmap-overlay::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.1);
+      border-radius: 5px;
+    }
+    </style>
+    <!-- Space Galaxy Canvas CSS -->
+    <style>
+#space-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: radial-gradient(circle at 50% 50%, #00111a 0%, #000814 80%);
+}
+    </style>
+    <!-- ===== Animated Gradient Background ===== -->
+    <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(270deg, #0f0c29, #302b63, #24243e, #0f0c29);
+      background-size: 800% 800%;
+      animation: gradientShift 25s ease infinite;
+      z-index: -20;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    </style>
+    </style>
+</head>
+<body>
+    <!-- Animated Space Galaxy Background -->
+    <div class="space-bg">
+      <div class="stars"></div>
+      <div class="nebula"></div>
+    </div>
+    <canvas id="space-bg"></canvas>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="width: 110px; height: 110px; top: 10%; left: 5%; animation-duration: 22s;"></div>
+        <div class="floating-element" style="width: 160px; height: 160px; top: 60%; left: 80%; animation-duration: 26s;"></div>
+        <div class="floating-element" style="width: 90px; height: 90px; top: 80%; left: 10%; animation-duration: 20s;"></div>
+        <div class="floating-element" style="width: 130px; height: 130px; top: 30%; left: 70%; animation-duration: 24s;"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-code"></i>
+            <span>LogicLift</span>
+        </div>
+        <div class="user-actions">
+            <button class="btn btn-secondary" id="logoutBtn" style="display: none;">Logout</button>
+            <div id="userMenu" style="display: none;">
+                <span id="userName"></span>
+                <span id="userLevel"></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Welcome to LogicLift</h1>
+            <p>
+                An interactive platform designed to help beginners build strong logic and programming foundations, develop problem-solving skills, and track their progress with gamified learning.
+            </p>
+            <button id="startJourneyBtn" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Start Your Journey</button>
+        </section>
+
+        <section class="assessment-section" id="learn-section">
+            <h2 class="section-title">Assess Your Current Level</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: rgba(255, 255, 255, 0.7);">
+                Tell us about your experience so we can personalize your learning path
+            </p>
+            <div class="assessment-options">
+                <div class="level-option">
+                    <h4>Beginner</h4>
+                    <p>Just starting with programming</p>
+                </div>
+                <div class="beginner-questions" style="display:none; margin-top:2rem; text-align:center;">
+                    <h3 style="color:var(--accent3); margin-bottom:1rem;">Beginner Questions</h3>
+                    <div style="text-align:left; max-width:600px; margin:0 auto; color:rgba(255,255,255,0.85);">
+                        <ol>
+                            <li>What is a variable in programming?</li>
+                            <li>Which of the following is a looping statement?<br><em>a) if b) for c) break d) return</em></li>
+                            <li>What is the correct syntax to print in Python?<br><em>a) echo('Hello') b) print('Hello') c) printf('Hello')</em></li>
+                            <li>Which data type is used to store True or False values?</li>
+                            <li>What does IDE stand for in programming?</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="level-option">
+                    <h4>Intermediate</h4>
+                    <p>Know basics but want to improve</p>
+                </div>
+                <div class="level-option">
+                    <h4>Advanced</h4>
+                    <p>Comfortable with programming concepts</p>
+                </div>
+            </div>
+            
+            <div style="text-align:center; margin:2rem 0 2rem;">
+              <button class="btn notes-btn nav-btn" type="button" style="margin:0 0.5rem;">Notes</button>
+              <button class="btn practice-btn nav-btn" type="button" style="margin:0 0.5rem;" onclick="loadFile('practicebutton.txt')">Practice Questions</button>
+              <button class="btn revision-btn nav-btn" type="button" style="margin:0 0.5rem;" onclick="loadFile('links_for_comm_support.txt')">Revision</button>
+              <button class="btn intermediate-btn nav-btn" type="button" style="margin:0 0.5rem;" onclick="loadFile('intermediatebutton.txt')">Intermediate</button>
+              <button class="btn advanced-btn nav-btn" type="button" style="margin:0 0.5rem;" onclick="loadFile('advbutton.txt')">Advanced</button>
+              <button class="btn progress-btn nav-btn" type="button" style="margin:0 0.5rem;">Progress</button>
+            </div>
+            <pre id="output"></pre>
+            <h3 style="text-align: center; margin: 2.5rem 0 1rem; color: var(--accent3);">Choose Your Language</h3>
+            <div class="language-selection">
+                <button class="language-btn">Python</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="Python">Python Beginner Roadmap</button>
+                <button class="language-btn">JavaScript</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="JavaScript">JavaScript Beginner Roadmap</button>
+                <button class="language-btn">Java</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="Java">Java Beginner Roadmap</button>
+                <button class="language-btn">C++</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="C++">C++ Beginner Roadmap</button>
+                <button class="language-btn">C#</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="C#">C# Beginner Roadmap</button>
+                <button class="language-btn">Go</button>
+                <button class="btn btn-secondary roadmap-btn" data-lang="Go">Go Beginner Roadmap</button>
+            </div>
+            <div class="language-concepts" style="display:none; margin-top:2rem; text-align:center;">
+              <h3 style="color:var(--accent3); margin-bottom:1rem;">Language Concepts</h3>
+              <div style="text-align:left; max-width:600px; margin:0 auto; color:rgba(255,255,255,0.85);">
+                <ul id="concept-list">
+                  <!-- Dynamic concepts will appear here -->
+                </ul>
+              </div>
+            </div>
+        </section>
+
+        <!-- Advanced Learning Features Section -->
+        <section id="learning-features" class="glass-section advanced-learning">
+          <h2 class="section-title">Advanced Learning Features</h2>
+          <p class="section-intro">Experience next-generation learning tools designed to enhance your coding journey with AI, interactivity, and analytics.</p>
+
+          <div class="features-grid">
+            <button type="button" class="feature-card glass" onclick="openAIGuidance()">
+              <h3>AI-Powered Guidance</h3>
+              <p>Get smart hints and explanations powered by AI to help you debug, learn concepts, and improve problem-solving efficiency.</p>
+            </button>
+
+            <button type="button" class="feature-card glass" onclick="openCodeEditor()">
+              <h3>Interactive Code Editor</h3>
+              <p>Write and run code directly within the platform using our built-in interactive editor supporting multiple languages.</p>
+            </button>
+
+            <button type="button" class="feature-card glass" onclick="openDynamicRoadmaps()">
+              <h3>Dynamic Roadmaps</h3>
+              <p>Personalized learning roadmaps that adapt to your progress and suggest what to learn next for faster growth.</p>
+            </button>
+
+            <button type="button" class="feature-card glass" onclick="openGamifiedLearning()">
+              <h3>Gamified Learning</h3>
+              <p>Earn XP, streaks, and badges for completing lessons and solving challenges. Learning feels like playing a game!</p>
+            </button>
+        <!-- Gamified Learning Modal -->
+        <div id="gamifiedModal" class="modal glass">
+          <h2>Gamified Learning Dashboard</h2>
+          <p>Earn XP, maintain streaks, and collect badges as you learn!</p>
+          <div class="gamified-stats">
+            <div class="stat-card">
+              <h3>XP Earned</h3>
+              <p id="xpCount">1200</p>
+            </div>
+            <div class="stat-card">
+              <h3>Badges Unlocked</h3>
+              <p id="badgesCount">8</p>
+            </div>
+            <div class="stat-card">
+              <h3>Daily Streak</h3>
+              <p id="streakCount">5 Days</p>
+            </div>
+          </div>
+          <div class="gamified-actions">
+            <button id="gainXPBtn" class="btn">Gain XP</button>
+            <button id="unlockBadgeBtn" class="btn">Unlock Badge</button>
+            <button id="increaseStreakBtn" class="btn">Continue Streak</button>
+          </div>
+          <button class="close-modal">Close</button>
+        </div>
+
+        <!-- AI Powered Guidance Modal -->
+        <div id="aiGuidanceModal" class="modal glass">
+          <h2>AI-Powered Guidance</h2>
+          <p>Ask AI for instant hints, debugging tips, and explanations tailored to your coding level.</p>
+          <div class="ai-actions">
+            <input type="text" id="aiQuestion" placeholder="Ask AI something..." />
+            <button id="askAIButton" class="btn">Ask</button>
+            <div id="aiResponse" class="ai-response"></div>
+          </div>
+          <button class="close-modal">Close</button>
+        </div>
+
+        <!-- Interactive Code Editor Modal -->
+        <div id="codeEditorModal" class="modal">
+          <h2>Interactive Code Editor</h2>
+          <p>Try coding directly in the editor below!</p>
+          <textarea id="codeArea" placeholder="Write your code here..." rows="10" cols="50"></textarea><br>
+          <button id="runCodeButton" class="btn">Run Code</button>
+          <pre id="codeOutput"></pre>
+          <button class="close-modal">Close</button>
+        </div>
+
+        <!-- Dynamic Roadmaps Modal -->
+        <div id="dynamicRoadmapsModal" class="modal glass">
+          <h2>Dynamic Roadmaps</h2>
+          <p>Your personalized roadmap updates based on your performance and completed modules.</p>
+          <button id="generateRoadmap" class="btn">Generate Roadmap</button>
+          <div id="roadmapDisplay"></div>
+          <button class="close-modal">Close</button>
+        </div>
+
+        <!-- Progress Analytics Modal -->
+        <div id="progressAnalyticsModal" class="modal glass">
+          <h2>Progress Analytics</h2>
+          <p>Analyze your performance metrics with detailed visualizations.</p>
+          <canvas id="analyticsChart" width="400" height="200"></canvas>
+          <button class="close-modal">Close</button>
+        </div>
+
+            <button type="button" class="feature-card glass" onclick="openProgressAnalytics()">
+              <h3>Progress Analytics</h3>
+              <p>Track your improvement with data-driven insights showing accuracy, speed, and time spent per topic.</p>
+            </button>
+
+            <button type="button" class="feature-card glass" onclick="openCommunitySupport()">
+              <h3>Community Support</h3>
+              <p>Collaborate, discuss problems, and share knowledge with fellow learners to grow together.</p>
+            </button>
+          </div>
+        </section>
+</style>
+<style>
+/* ===== Advanced Learning Features Section ===== */
+.advanced-learning {
+  margin: 4rem auto;
+  padding: 4rem 2rem;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  text-align: center;
+  width: 90%;
+  max-width: 1300px;
+}
+
+.advanced-learning .section-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.advanced-learning .section-intro {
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  padding: 2rem;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px) saturate(1.3);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 4px 25px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  color: #fff;
+  text-align: left;
+}
+
+.feature-card h3 {
+  color: #00e6ff;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.feature-card p {
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.5);
+  background: rgba(255,255,255,0.15);
+}
+</style>
+
+        <section class="progress-section glass-section">
+          <h2 class="section-title">Track Your Progress</h2>
+          <p style="text-align:center; color:rgba(255,255,255,0.85); max-width:700px; margin:0 auto 2rem;">
+            Stay motivated with real-time analytics that visualize your learning streaks, achievements, and overall growth.
+          </p>
+
+          <div class="progress-dashboard">
+            <div class="progress-stat">
+              <div class="circular-progress" data-progress="85">
+                <span class="progress-value">85%</span>
+              </div>
+              <p>Course Completion</p>
+            </div>
+            <div class="progress-stat">
+              <div class="circular-progress" data-progress="14">
+                <span class="progress-value">14</span>
+              </div>
+              <p>Day Streak</p>
+            </div>
+            <div class="progress-stat">
+              <div class="circular-progress" data-progress="23">
+                <span class="progress-value">23</span>
+              </div>
+              <p>Badges Earned</p>
+            </div>
+            <div class="progress-stat">
+              <div class="circular-progress" data-progress="156">
+                <span class="progress-value">156</span>
+              </div>
+              <p>Problems Solved</p>
+            </div>
+          </div>
+        </section>
+<style>
+.progress-dashboard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.progress-stat {
+  text-align: center;
+  color: #fff;
+}
+
+.circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: conic-gradient(#00e6ff calc(var(--progress) * 1%), rgba(255,255,255,0.1) 0%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #00e6ff;
+  box-shadow: 0 0 20px rgba(0,230,255,0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.circular-progress:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0,230,255,0.6);
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  background: rgba(15,25,45,0.8);
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+}
+</style>
+<script>
+document.querySelectorAll('.circular-progress').forEach(circle => {
+  const value = parseInt(circle.getAttribute('data-progress'));
+  let progress = 0;
+  const interval = setInterval(() => {
+    if (progress >= value) clearInterval(interval);
+    progress++;
+    circle.style.setProperty('--progress', progress);
+    circle.querySelector('.progress-value').textContent = value <= 100 ? progress + '%' : progress;
+  }, 20);
+});
+</script>
+    </div>
+
+    <!-- ======= Glowing Login/Register Sections ======= -->
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LogicLift</h3>
+                <p>Empowering beginners to become confident problem solvers through structured logic and programming practice.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/v_s_g123/" target="_blank" class="social-link instagram">Shiva</a>
+                    <a href="https://www.instagram.com/khanzz__dabeer_razvi/" target="_blank" class="social-link instagram">Dabeer</a>
+                    <a href="https://www.instagram.com/karan_rk03/" target="_blank" class="social-link instagram">Karan</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Practice</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Leaderboard</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Data Processing</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 LogicLift. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- ===== Full-Fledged AI Chatbot (Embedded Panel Mode) ===== -->
+    <section id="aiChatSection" class="ai-chat-section glass-section">
+      <h2 class="section-title">LogicLift AI Assistant</h2>
+      <p class="section-intro">Chat with LogicLift AI — your personal coding mentor and guide.</p>
+
+      <div class="chat-container">
+        <div id="chatHistory" class="chat-history"></div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" placeholder="Type your question here..." />
+          <button id="chatSendBtn">Send</button>
+        </div>
+        <div class="preset-questions">
+          <button class="preset-btn">What is Python and why is it popular?</button>
+          <button class="preset-btn">What are variables and data types?</button>
+          <button class="preset-btn">Explain the concept of loops.</button>
+          <button class="preset-btn">What are functions and why do we use them?</button>
+          <button class="preset-btn">What is the difference between list and tuple?</button>
+          <button class="preset-btn">Explain Object Oriented Programming in simple terms.</button>
+          <button class="preset-btn">What is recursion?</button>
+          <button class="preset-btn">What is DSA and how do I start learning it?</button>
+          <button class="preset-btn">How to improve problem-solving skills in coding?</button>
+          <button class="preset-btn">What are time and space complexity?</button>
+          <button class="preset-btn">What is an algorithm?</button>
+          <button class="preset-btn">How can I start learning Artificial Intelligence?</button>
+          <button class="preset-btn">What is machine learning in simple words?</button>
+          <button class="preset-btn">Difference between supervised and unsupervised learning.</button>
+          <button class="preset-btn">What is an API and how does it work?</button>
+        </div>
+      </div>
+    </section>
+
+    <style>
+.ai-chat-section {
+  margin: 4rem auto;
+  padding: 2rem;
+  max-width: 900px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  background: rgba(10,10,25,0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  text-align: left;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  background: rgba(15,15,35,0.9);
+  scrollbar-width: thin;
+}
+
+.chat-message {
+  margin: 0.8rem 0;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  line-height: 1.6;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #00e6ff, #8e54e9);
+  color: #fff;
+  margin-left: auto;
+  box-shadow: 0 0 15px rgba(0,230,255,0.4);
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background: rgba(255,255,255,0.08);
+  color: #e6e6e6;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.chat-input-area {
+  display: flex;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+#chatInput {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+#chatSendBtn {
+  margin-left: 0.8rem;
+  background: linear-gradient(45deg, #00e6ff, #8e54e9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#chatSendBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,230,255,0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+<style>
+/* ===== Preset Question Buttons ===== */
+.preset-questions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.preset-btn {
+  background: rgba(0, 230, 255, 0.15);
+  border: 1px solid rgba(0, 230, 255, 0.4);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+.preset-btn:hover {
+  background: rgba(255, 0, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+</style>
+
+<script>
+// ===== Full AI Chatbot Logic =====
+const chatHistory = document.getElementById('chatHistory');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+
+function addMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.classList.add('chat-message', sender);
+  msg.textContent = text;
+  chatHistory.appendChild(msg);
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+}
+
+chatSendBtn.addEventListener('click', sendChat);
+chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendChat(); });
+
+async function sendChat() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  addMessage('user', text);
+  chatInput.value = '';
+  addMessage('bot', 'LogicLift AI is thinking...');
+
+  try {
+    // Replace with your real OpenAI API key
+    const apiKey = 'YOUR_OPENAI_API_KEY_HERE';
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'system', content: 'You are LogicLift AI, a helpful coding assistant for students.' }, { role: 'user', content: text }]
+      })
+    });
+
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content || "Sorry, I couldn't process that.";
+    document.querySelector('.chat-message.bot:last-child').textContent = reply;
+  } catch (error) {
+    document.querySelector('.chat-message.bot:last-child').textContent = '⚠️ Network error or invalid API key.';
+  }
+}
+</script>
+<script>
+// Preset question buttons for AI chatbot
+document.querySelectorAll('.preset-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const question = button.textContent;
+    chatInput.value = question;
+    sendChat();
+  });
+});
+</script>
+
+    <!-- Roadmap Overlay -->
+    <!-- ====== LogicLift Interactive Learn Popups & Roadmaps ====== -->
+    <!-- Notes Modal -->
+    <div id="notesModal" class="modal glass">
+      <h2>Concept Notes</h2>
+      <div class="modal-content">
+        <h3>Python</h3>
+        <ul><li>Everything in Python is an object.</li><li>Functions are defined using def.</li><li>Lists are dynamic arrays.</li></ul>
+        <h3>JavaScript</h3>
+        <ul><li>JS is single-threaded but asynchronous.</li><li>DOM manipulation is core for UI.</li><li>Use const/let instead of var.</li></ul>
+        <h3>Java</h3>
+        <ul><li>Strictly typed OOP language.</li><li>Supports multithreading.</li><li>Everything runs inside classes.</li></ul>
+        <h3>C++</h3>
+        <ul><li>Combines OOP and procedural features.</li><li>Use templates for generic programming.</li><li>Supports operator overloading.</li></ul>
+        <h3>C#</h3>
+        <ul><li>Developed by Microsoft for .NET.</li><li>Supports LINQ and async/await.</li><li>Uses garbage collection.</li></ul>
+        <h3>Go</h3>
+        <ul><li>Fast, compiled, and concurrent.</li><li>Goroutines enable parallel execution.</li><li>Memory-safe and efficient.</li></ul>
+      </div>
+      <button class="close-modal">Close</button>
+    </div>
+
+    <!-- Practice Questions Modal -->
+    <div id="practiceModal" class="modal glass">
+      <h2>Practice Questions</h2>
+      <ul>
+        <li>Write a Python program to check if a number is prime.</li>
+        <li>Write a JavaScript function to reverse a string.</li>
+        <li>Write a Java program to find factorial using recursion.</li>
+        <li>Write a C++ program to find the largest element in an array.</li>
+        <li>Write a C# program to swap two numbers without using a third variable.</li>
+        <li>Write a Go program to check if a number is even or odd.</li>
+        <li>Write a Python program to count vowels in a string.</li>
+        <li>Write a JavaScript program to check for palindrome.</li>
+        <li>Write a Java program to sort elements using Bubble Sort.</li>
+        <li>Write a C++ program to calculate Fibonacci sequence.</li>
+      </ul>
+      <button class="close-modal">Close</button>
+    </div>
+
+    <!-- Revision Modal -->
+    <div id="revisionModal" class="modal glass">
+      <h2>Revision Tips</h2>
+      <ul>
+        <li>Focus more on logic, not syntax.</li>
+        <li>Practice at least 2 problems daily.</li>
+        <li>Debug line-by-line to strengthen logic.</li>
+      </ul>
+      <h3>Important Concepts</h3>
+      <ul>
+        <li>Data Types and Variables</li>
+        <li>Loops and Conditional Statements</li>
+        <li>Functions and OOP</li>
+        <li>Arrays and Data Structures</li>
+      </ul>
+      <button class="close-modal">Close</button>
+    </div>
+
+    <!-- Intermediate Modal -->
+    <div id="intermediateModal" class="modal glass">
+      <h2>Intermediate Level Questions</h2>
+      <ul>
+        <li>Implement Binary Search in Python.</li>
+        <li>Create a JavaScript function to flatten nested arrays.</li>
+        <li>Write a Java program to find frequency of words in a sentence.</li>
+        <li>Write a C++ program to merge two sorted arrays.</li>
+        <li>Write a C# program to sort objects by key.</li>
+      </ul>
+      <button class="close-modal">Close</button>
+    </div>
+
+    <!-- Advanced Modal -->
+    <div id="advancedModal" class="modal glass">
+      <h2>Advanced Level Questions</h2>
+      <ul>
+        <li>Implement Merge Sort algorithm in any language.</li>
+        <li>Detect a cycle in a linked list.</li>
+        <li>Write an algorithm to solve the N-Queens problem.</li>
+        <li>Implement Dijkstra's shortest path algorithm.</li>
+        <li>Build a class-based system with polymorphism.</li>
+      </ul>
+      <button class="close-modal">Close</button>
+    </div>
+
+    <!-- Language Roadmaps -->
+    <div id="pythonRoadmap" class="modal glass">
+      <h2>Python Beginner Roadmap</h2>
+      <div class="flowchart">Start → Basics → Loops → Functions → OOP → DSA → Mini Projects → Final Project</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <div id="javascriptRoadmap" class="modal glass">
+      <h2>JavaScript Beginner Roadmap</h2>
+      <div class="flowchart">Start → Syntax & Variables → Functions → DOM → Async JS → OOP → DSA → Projects</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <div id="javaRoadmap" class="modal glass">
+      <h2>Java Beginner Roadmap</h2>
+      <div class="flowchart">Start → Syntax → OOP → Collections → Exception Handling → DSA → Mini Projects → Final Project</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <div id="c++Roadmap" class="modal glass">
+      <h2>C++ Beginner Roadmap</h2>
+      <div class="flowchart">Start → Syntax → Functions → OOP → STL → DSA → Mini Projects → Final Project</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <div id="c#Roadmap" class="modal glass">
+      <h2>C# Beginner Roadmap</h2>
+      <div class="flowchart">Start → Syntax → OOP → LINQ → Async/Await → DSA → Mini Projects → Final Project</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <div id="goRoadmap" class="modal glass">
+      <h2>Go Beginner Roadmap</h2>
+      <div class="flowchart">Start → Syntax → Functions → Structs → Concurrency → DSA → Mini Projects → Final Project</div>
+      <button class="close-modal">Close</button>
+    </div>
+    <style>
+    /* AI Guidance */
+    #aiGuidanceModal input {
+      width: 80%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
+    }
+    .ai-response {
+      margin-top: 1rem;
+      color: #00e6ff;
+      font-style: italic;
+    }
+
+    /* Code Editor Modal (non-translucent) */
+    #codeEditorModal {
+      background: #101820;
+      color: #fff;
+      border: 2px solid #00e6ff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,230,255,0.3);
+    }
+    #codeArea {
+      width: 100%;
+      background: #0a0a0a;
+      color: #00ffcc;
+      border: 1px solid #00e6ff;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+    }
+    #codeOutput {
+      margin-top: 1rem;
+      color: #00ffcc;
+      background: rgba(0,0,0,0.5);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    /* Dynamic Roadmaps */
+    #roadmapDisplay {
+      margin-top: 1rem;
+      color: #00ffcc;
+    }
+
+    /* Progress Analytics */
+    #analyticsChart {
+      margin-top: 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+      .modal {
+        display: none;
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2rem;
+        z-index: 999;
+        width: 80%;
+        max-height: 80%;
+        overflow-y: auto;
+        border-radius: 15px;
+      }
+      .glass {
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(20px) saturate(1.3);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: rgba(255,255,255,0.95);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      }
+      .modal h2, .modal h3 { color: #fff; }
+      .modal ul { margin-left: 20px; }
+      .close-modal {
+        margin-top: 1rem;
+        background: rgba(255,255,255,0.2);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+      }
+      .flowchart {
+        text-align: center;
+        white-space: pre-wrap;
+        line-height: 1.8;
+      }
+    /* Gamified Learning Modal */
+    .gamified-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 180px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+    .stat-card h3 {
+      color: #00e6ff;
+      margin-bottom: 0.5rem;
+    }
+    .stat-card p {
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+    </style>
+    <style>
+    /* Translucent Gamified Modal */
+    #gamifiedModal {
+      background: rgba(255, 255, 255, 0.05) !important;
+      backdrop-filter: blur(25px) saturate(1.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gamified-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gamified-actions .btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .gamified-actions .btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: scale(1.15);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    }
+    </style>
+    <style>
+    /* ===== Space Background ===== */
+    body {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .space-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #0a0a2a 0%, #000 100%);
+    }
+
+    .stars {
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: starMove 200s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes starMove {
+      from { background-position: 0 0; }
+      to { background-position: 10000px 5000px; }
+    }
+
+    .nebula {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 40%, rgba(128, 0, 255, 0.3), transparent 60%),
+                  radial-gradient(circle at 80% 60%, rgba(0, 200, 255, 0.25), transparent 70%);
+      filter: blur(100px);
+      animation: nebulaDrift 60s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaDrift {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-5%, 3%); }
+      100% { transform: scale(1) translate(5%, -3%); }
+    }
+    </style>
+
+    <script>
+    // File content loader for file display
+    async function loadFile(filename) {
+      const output = document.getElementById('output');
+      output.textContent = "";
+      output.classList.add('typing');
+      output.classList.remove('visible');
+      try {
+        const response = await fetch(filename);
+        if (!response.ok) throw new Error("File not found");
+        const text = await response.text();
+        let index = 0;
+        function typeWriter() {
+          if (index < text.length) {
+            output.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 10);
+          } else {
+            output.classList.remove('typing');
+            output.classList.add('visible');
+          }
+        }
+        typeWriter();
+      } catch (err) {
+        output.textContent = "⚠️ Unable to load file: " + err.message;
+        output.classList.remove('typing');
+        output.classList.add('visible');
+      }
+    }
+    // LogicLift Interactive Learn Popups & Roadmaps
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.close-modal').forEach(btn => btn.addEventListener('click', e => e.target.closest('.modal').style.display = 'none'));
+      var notesBtn = document.querySelector('.notes-btn');
+      if (notesBtn) notesBtn.onclick = () => document.getElementById('notesModal').style.display = 'block';
+      var practiceBtn = document.querySelector('.practice-btn');
+      if (practiceBtn) practiceBtn.onclick = () => document.getElementById('practiceModal').style.display = 'block';
+      var revisionBtn = document.querySelector('.revision-btn');
+      if (revisionBtn) revisionBtn.onclick = () => document.getElementById('revisionModal').style.display = 'block';
+      var intermediateBtn = document.querySelector('.intermediate-btn');
+      if (intermediateBtn) intermediateBtn.onclick = () => document.getElementById('intermediateModal').style.display = 'block';
+      var advancedBtn = document.querySelector('.advanced-btn');
+      if (advancedBtn) advancedBtn.onclick = () => document.getElementById('advancedModal').style.display = 'block';
+      var progressBtn = document.querySelector('.progress-btn');
+      if (progressBtn) progressBtn.onclick = () => {
+        var progressSection = document.querySelector('#progress-section') || document.querySelector('.progress-section');
+        if (progressSection) progressSection.scrollIntoView({ behavior: 'smooth' });
+      };
+      document.querySelectorAll('.roadmap-btn').forEach(btn => {
+        const lang = btn.getAttribute('data-lang').toLowerCase();
+        btn.onclick = () => {
+          // Modal id is e.g. pythonRoadmap, javascriptRoadmap, c++Roadmap, c#Roadmap, goRoadmap
+          let modalId = lang.replace(/[^a-z0-9#]/gi, '');
+          if (lang === 'c++') modalId = 'c++Roadmap';
+          else if (lang === 'c#') modalId = 'c#Roadmap';
+          else modalId = lang + 'Roadmap';
+          var el = document.getElementById(modalId);
+          if (el) el.style.display = 'block';
+        };
+      });
+    });
+    </script>
+    <div id="roadmapOverlay" class="roadmap-overlay" style="display:none;">
+      <div class="roadmap-container">
+        <button id="closeRoadmap" class="close-btn">✖</button>
+        <h2 id="roadmapTitle">Language Roadmap</h2>
+        <div id="roadmapFlow" class="roadmap-flow"></div>
+      </div>
+    </div>
+
+    <style>
+    /* ===== AI Chatbot Styling ===== */
+#aiChatbot {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+}
+
+.chat-btn {
+  background: radial-gradient(circle, #00e6ff, #8e54e9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.6rem;
+  box-shadow: 0 0 25px rgba(0, 230, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chat-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 35px rgba(255, 0, 255, 0.6);
+}
+
+.chat-window {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-input input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.chat-input button {
+  background: rgba(0, 230, 255, 0.4);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.chat-input button:hover {
+  background: rgba(255, 0, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.message {
+  margin-bottom: 0.8rem;
+  line-height: 1.4;
+}
+
+.message.user { text-align: right; color: #00e6ff; }
+.message.bot { text-align: left; color: #fff; }
+    </style>
+
+    <script>
+// ===== AI Chatbot Logic (with API key placeholder) =====
+const chatToggle = document.getElementById('chatToggle');
+const chatWindow = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const userInput = document.getElementById('userInput');
+const sendBtn = document.getElementById('sendBtn');
+
+chatToggle.addEventListener('click', () => {
+  chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+});
+
+sendBtn.addEventListener('click', sendMessage);
+userInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+function appendMessage(sender, text) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', sender);
+  msg.textContent = text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text) return;
+  appendMessage('user', text);
+  userInput.value = '';
+
+  appendMessage('bot', 'Thinking...');
+  
+  const apiKey = 'YOUR_OPENAI_API_KEY_HERE'; // Replace with your real key
+  try {
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || 'Sorry, I had trouble processing that.';
+    document.querySelector('.message.bot:last-child').textContent = reply;
+  } catch (err) {
+    document.querySelector('.message.bot:last-child').textContent = '⚠️ Error: Could not reach AI.';
+    console.error(err);
+  }
+}
+    // ===== Dropdown menu for Learn button =====
+    document.addEventListener('DOMContentLoaded', () => {
+      const learnDropdown = document.getElementById('learnDropdown');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+
+      learnDropdown.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+      });
+
+      // Close dropdown if clicked outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.dropdown')) {
+          dropdownMenu.style.display = 'none';
+        }
+      });
+
+      // Handle clicks on dropdown options
+      document.querySelectorAll('.learn-option').forEach(item => {
+        item.addEventListener('click', e => {
+          e.preventDefault();
+          const section = e.target.getAttribute('data-section');
+          dropdownMenu.style.display = 'none';
+          loadSection(section);
+        });
+      });
+    });
+    // Frontend JavaScript with Backend Simulation
+    // Use same origin API base so the demo server can run on any port.
+    const API_BASE = window.location.origin + '/api';
+    let currentUser = null;
+    let authToken = localStorage.getItem('authToken');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeApp();
+        setupEventListeners();
+        if (authToken) checkAuth();
+    });
+    function initializeApp() {
+        initializeCustomCursor();
+        if (authToken) {
+            loadUserProgress();
+            loadProblems();
+        }
+    }
+    function setupEventListeners() {
+        // Remove popup modal triggers for login/register buttons here.
+        // document.getElementById('loginBtn').addEventListener('click', showLoginModal);
+        // document.getElementById('registerBtn').addEventListener('click', showRegisterModal);
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+        document.querySelectorAll('.level-option').forEach(option => {
+            option.addEventListener('click', handleLevelSelection);
+        });
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', handleLanguageSelection);
+        });
+        // Add event listeners for roadmap buttons
+        document.querySelectorAll('.roadmap-btn').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                const lang = btn.getAttribute('data-lang');
+                showFlowRoadmap(lang);
+            });
+        });
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', handleFeatureClick);
+        });
+    }
+    async function checkAuth() {
+        try {
+            const response = await fetch(`${API_BASE}/auth/me`, {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                currentUser = data.data.user;
+                updateUIForAuth();
+            } else {
+                localStorage.removeItem('authToken');
+                authToken = null;
+            }
+        } catch (error) {
+            showNotification('Backend not running. Using demo mode.', 'info');
+        }
+    }
+    async function login(email, password) {
+        try {
+            const response = await fetch(`${API_BASE}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+            if (response.ok) {
+                authToken = data.data.token;
+                localStorage.setItem('authToken', authToken);
+                currentUser = data.data.user;
+                updateUIForAuth();
+                hideModal();
+                showNotification('Login successful!', 'success');
+            } else {
+                showNotification(data.message || 'Login failed', 'error');
+            }
+        } catch (error) {
+            showNotification('Backend not available. Using demo mode.', 'info');
+            demoLogin(email);
+        }
+    }
+    async function register(userData) {
+        try {
+            const response = await fetch(`${API_BASE}/auth/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                authToken = data.data.token;
+                localStorage.setItem('authToken', authToken);
+                currentUser = data.data.user;
+                updateUIForAuth();
+                hideModal();
+                showNotification('Registration successful!', 'success');
+            } else {
+                showNotification(data.message || 'Registration failed', 'error');
+            }
+        } catch (error) {
+            showNotification('Backend not available. Using demo mode.', 'info');
+            demoRegister(userData);
+        }
+    }
+    function demoLogin(email) {
+        authToken = 'demo-token-' + Date.now();
+        localStorage.setItem('authToken', authToken);
+        currentUser = {
+            id: 'demo-user',
+            username: email.split('@')[0],
+            email: email,
+            profile: { level: 'beginner', firstName: 'Demo', lastName: 'User' },
+            progress: { currentStreak: 3, totalProblemsSolved: 15, easyProblemsSolved: 10, mediumProblemsSolved: 5, hardProblemsSolved: 0 }
+        };
+        updateUIForAuth();
+        hideModal();
+        showNotification('Demo login successful!', 'success');
+    }
+    function demoRegister(userData) {
+        authToken = 'demo-token-' + Date.now();
+        localStorage.setItem('authToken', authToken);
+        currentUser = {
+            id: 'demo-user-' + Date.now(),
+            username: userData.username,
+            email: userData.email,
+            profile: {
+                level: userData.level || 'beginner',
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                programmingLanguages: ['javascript']
+            },
+            progress: { currentStreak: 0, totalProblemsSolved: 0, easyProblemsSolved: 0, mediumProblemsSolved: 0, hardProblemsSolved: 0 }
+        };
+        updateUIForAuth();
+        hideModal();
+        showNotification('Demo registration successful!', 'success');
+    }
+    function logout() {
+        localStorage.removeItem('authToken');
+        authToken = null;
+        currentUser = null;
+        updateUIForAuth();
+        showNotification('Logged out successfully', 'info');
+    }
+    function updateUIForAuth() {
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userMenu = document.getElementById('userMenu');
+        if (currentUser) {
+            loginBtn.style.display = 'none';
+            registerBtn.style.display = 'none';
+            logoutBtn.style.display = 'block';
+            userMenu.style.display = 'block';
+            document.getElementById('userName').textContent = currentUser.username;
+            document.getElementById('userLevel').textContent = currentUser.profile.level;
+            updateProgressUI(currentUser.progress);
+        } else {
+            loginBtn.style.display = 'block';
+            registerBtn.style.display = 'block';
+            logoutBtn.style.display = 'none';
+            userMenu.style.display = 'none';
+        }
+    }
+    async function loadUserProgress() {
+        try {
+            const response = await fetch(`${API_BASE}/progress`, {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                updateProgressUI(data.data);
+            }
+        } catch (error) {
+            if (currentUser) updateProgressUI(currentUser.progress);
+        }
+    }
+    async function loadProblems() {
+        try {
+            const response = await fetch(`${API_BASE}/problems`, {
+                headers: { 'Authorization': `Bearer ${authToken}` }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Loaded problems:', data);
+            }
+        } catch (error) {}
+    }
+    function updateProgressUI(progressData) {
+        const statCards = document.querySelectorAll('.stat-card');
+        if (progressData) {
+            statCards[0].querySelector('.stat-value').textContent = progressData.currentStreak || 0;
+            statCards[1].querySelector('.stat-value').textContent = '87%';
+            statCards[2].querySelector('.stat-value').textContent = Math.floor(progressData.totalProblemsSolved / 5) || 0;
+            statCards[3].querySelector('.stat-value').textContent = progressData.totalProblemsSolved || 0;
+        }
+    }
+    // function showLoginModal() { showAuthModal('login'); }
+    // function showRegisterModal() { showAuthModal('register'); }
+    // function showAuthModal(type) { ... } // Modal popups for login/register are now replaced by glowing sections.
+    function hideModal() {
+        const modal = document.querySelector('.modal-overlay');
+        if (modal) document.body.removeChild(modal);
+    }
+    // ====== Glowing Auth Section Handler ======
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const text = el.textContent.toLowerCase();
+        if (text.includes('login')) {
+          e.preventDefault();
+          document.querySelectorAll('.auth-section').forEach(sec => sec.style.display = 'none');
+          document.getElementById('login-section').style.display = 'block';
+          document.getElementById('login-section').scrollIntoView({ behavior: 'smooth' });
+        } else if (text.includes('register') || text.includes('get started')) {
+          e.preventDefault();
+          document.querySelectorAll('.auth-section').forEach(sec => sec.style.display = 'none');
+          document.getElementById('register-section').style.display = 'block';
+          document.getElementById('register-section').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    function handleLevelSelection(event) {
+        const levelOptions = document.querySelectorAll('.level-option');
+        levelOptions.forEach(opt => opt.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+        // Show/hide beginner questions block
+        const beginnerQ = document.querySelector('.beginner-questions');
+        if (event.currentTarget.querySelector('h4').textContent.toLowerCase().includes('beginner')) {
+            beginnerQ.style.display = 'block';
+        } else {
+            beginnerQ.style.display = 'none';
+        }
+        // Palette transition: switch to blues, purples, or greens for color psychology
+        const text = event.currentTarget.querySelector('h4').textContent.toLowerCase();
+        let palette;
+        if (text.includes('beginner')) {
+            palette = { p: '#4a90e2', s: '#1452a0', g: '#43e97b' }; // Calm (blue)
+        } else if (text.includes('intermediate')) {
+            palette = { p: '#8e54e9', s: '#b721ff', g: '#43e97b' }; // Creativity (purple)
+        } else {
+            palette = { p: '#43e97b', s: '#38f9d7', g: '#4a90e2' }; // Growth (green)
+        }
+        document.documentElement.style.setProperty('--primary-calm', palette.p);
+        document.documentElement.style.setProperty('--primary-creativity', palette.s);
+        document.documentElement.style.setProperty('--primary-growth', palette.g);
+        if (currentUser) {
+            updateUserLevel(text);
+        }
+    }
+    function handleLanguageSelection(event) {
+        const languageButtons = document.querySelectorAll('.language-btn');
+        languageButtons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        if (currentUser) {
+            updateUserLanguage(event.currentTarget.textContent);
+        }
+        const conceptList = document.getElementById('concept-list');
+        const conceptSection = document.querySelector('.language-concepts');
+        const language = event.currentTarget.textContent.trim();
+        const concepts = {
+          Python: [
+            "Variables and Data Types",
+            "Indentation and Syntax",
+            "Functions and Modules",
+            "Lists, Tuples, and Dictionaries",
+            "File Handling and Exceptions"
+          ],
+          JavaScript: [
+            "Variables and Scope (var, let, const)",
+            "Functions and Arrow Functions",
+            "DOM Manipulation",
+            "Promises and Async/Await",
+            "Objects and JSON"
+          ],
+          Java: [
+            "Classes and Objects",
+            "Inheritance and Polymorphism",
+            "Interfaces and Abstract Classes",
+            "Collections Framework",
+            "Exception Handling"
+          ],
+          "C++": [
+            "Input/Output and Data Types",
+            "Functions and Overloading",
+            "Classes and Inheritance",
+            "Pointers and References",
+            "STL (Standard Template Library)"
+          ],
+          "C#": [
+            "Variables and Data Types",
+            "OOP Concepts (Encapsulation, Inheritance, Polymorphism)",
+            "LINQ (Language Integrated Query)",
+            "Delegates and Events",
+            "Exception Handling"
+          ],
+          Go: [
+            "Basic Syntax and Packages",
+            "Functions and Error Handling",
+            "Structs and Interfaces",
+            "Concurrency with Goroutines",
+            "Channels and Go Routines"
+          ]
+        };
+
+        if (concepts[language]) {
+          conceptSection.style.display = 'block';
+          conceptList.innerHTML = concepts[language].map(c => `<li>${c}</li>`).join('');
+        } else {
+          conceptSection.style.display = 'none';
+        }
+    }
+    // function handleFeatureClick(event) {
+    //     const featureName = event.currentTarget.querySelector('h3').textContent;
+    //     showNotification(`Opening ${featureName}...`, 'info');
+    // }
+    function openGamifiedLearning() {
+      document.getElementById('gamifiedModal').style.display = 'block';
+    }
+    async function updateUserLevel(level) {
+        try {
+            const response = await fetch(`${API_BASE}/auth/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+                body: JSON.stringify({ level })
+            });
+            if (response.ok) showNotification('Level updated successfully!', 'success');
+        } catch (error) {
+            if (currentUser) {
+                currentUser.profile.level = level;
+                showNotification('Level updated! (Demo mode)', 'success');
+            }
+        }
+    }
+    async function updateUserLanguage(language) {
+        try {
+            const response = await fetch(`${API_BASE}/auth/profile`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+                body: JSON.stringify({ programmingLanguages: [language] })
+            });
+            if (response.ok) showNotification('Language preference updated!', 'success');
+        } catch (error) {
+            if (currentUser) {
+                currentUser.profile.programmingLanguages = [language];
+                showNotification('Language preference updated! (Demo mode)', 'success');
+            }
+        }
+    }
+    function showNotification(message, type = 'info') {
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => {
+            document.body.removeChild(notification);
+        });
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        setTimeout(() => {
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
+        }, 3000);
+    }
+    function initializeCustomCursor() {}
+    </script>
+
+    <!-- ==========================
+         DYNAMIC CONTENT HANDLER
+         ========================== -->
+    <script>
+    // Sections data (HTML for each feature)
+    const sectionTemplates = {
+      streaks: `
+        <section class="feature-section flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h2 class="section-title">🔥 Daily Streaks</h2>
+              <p>Track your consistency and never break the chain!</p>
+              <button class="btn btn-primary flip-btn">View My Streaks</button>
+            </div>
+            <div class="flip-back">
+              <h2 class="section-title">Your Streaks</h2>
+              <div class="stat-card">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Current Streak</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">156</div>
+                <div class="stat-label">Problems Solved</div>
+              </div>
+              <button class="btn btn-secondary flip-btn">Back</button>
+            </div>
+          </div>
+        </section>
+      `,
+      leaderboard: `
+        <section class="feature-section flip-card">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <h2 class="section-title">🏆 Leaderboard</h2>
+              <p>See where you stand among other learners!</p>
+              <button class="btn btn-primary flip-btn">View Top 10</button>
+            </div>
+            <div class="flip-back">
+              <h2 class="section-title">Top 10 Learners</h2>
+              <table style="width:100%; text-align:left; margin-top:1rem;">
+                <tr><th>Rank</th><th>Name</th><th>Streak</th><th>Questions Solved</th></tr>
+                ${['Shiva','Karan','Dabeer','Aarav','Meera','Ishaan','Riya','Dev','Ananya','Rohit']
+                  .map((name,i)=>`<tr><td>${i+1}</td><td>${name}</td><td>${Math.floor(Math.random()*20)+1}</td><td>${Math.floor(Math.random()*200)+10}</td></tr>`).join('')}
+              </table>
+              <button class="btn btn-secondary flip-btn">Back</button>
+            </div>
+          </div>
+        </section>
+      `,
+      badges: `
+        <section class="feature-section">
+          <h2 class="section-title">🎖️ Badges & Rewards</h2>
+          <p>Earn badges as you learn and grow!</p>
+          <div class="features-grid">
+            <div class="feature-card"><h3>Logic Starter</h3><p>Completed 10 problems</p></div>
+            <div class="feature-card"><h3>Code Wizard</h3><p>Earned 500 XP</p></div>
+            <div class="feature-card"><h3>Problem Solver</h3><p>Solved 100 problems</p></div>
+          </div>
+        </section>
+      `,
+      roadmap: `
+        <section class="feature-section">
+          <h2 class="section-title">🗺️ Guidance & Roadmap</h2>
+          <p>Follow this structured learning path to grow from Beginner to Pro!</p>
+          <ol style="text-align:left; margin-top:1rem;">
+            <li>Programming Basics</li>
+            <li>Data Structures</li>
+            <li>Algorithms</li>
+            <li>Problem Solving Practice</li>
+            <li>Build Real Projects</li>
+          </ol>
+        </section>
+      `,
+      practice: `
+        <section class="feature-section">
+          <h2 class="section-title">💻 Practice Questions</h2>
+          <p>Challenge yourself with curated problems by difficulty level.</p>
+          <div class="section">
+            <button class="btn btn-secondary">Easy</button>
+            <button class="btn btn-secondary">Medium</button>
+            <button class="btn btn-secondary">Hard</button>
+          </div>
+        </section>
+      `,
+      notes: `
+        <section class="feature-section">
+          <h2 class="section-title">📘 Concept Notes</h2>
+          <p>Quickly revise programming fundamentals and core topics.</p>
+          <ul style="text-align:left;">
+            <li>Variables & Data Types</li>
+            <li>Control Structures</li>
+            <li>Functions</li>
+            <li>OOP Concepts</li>
+            <li>Recursion</li>
+          </ul>
+        </section>
+      `,
+      dsa: `
+        <section class="feature-section">
+          <h2 class="section-title">🧩 DSA Topics</h2>
+          <p>Master Data Structures and Algorithms step by step.</p>
+          <ul style="text-align:left;">
+            <li>Arrays & Strings</li>
+            <li>Linked Lists</li>
+            <li>Stacks & Queues</li>
+            <li>Trees & Graphs</li>
+            <li>Sorting & Searching</li>
+          </ul>
+        </section>
+      `,
+      flashcards: `
+        <section class="feature-section">
+          <h2 class="section-title">⚡ Flash Cards</h2>
+          <p>Swipe through quick notes for instant revision.</p>
+          <div class="features-grid">
+            <div class="feature-card"><h3>Loops</h3><p>For, While, Do-While</p></div>
+            <div class="feature-card"><h3>Arrays</h3><p>Collections of elements</p></div>
+            <div class="feature-card"><h3>Recursion</h3><p>Function calling itself</p></div>
+          </div>
+        </section>
+      `,
+      personalnotes: `
+        <section class="feature-section">
+          <h2 class="section-title">📝 Your Notes</h2>
+          <textarea id="userNotes" placeholder="Write your notes here..." style="width:100%; height:200px; border-radius:10px; padding:1rem;"></textarea>
+          <button class="btn btn-primary" style="margin-top:1rem;" id="saveNotesBtn">Save Notes</button>
+        </section>
+      `
+    };
+
+    // ================= INTERMEDIATE SECTION =================
+    sectionTemplates.intermediate = `
+      <section class="feature-section flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <h2 class="section-title">⚡ Intermediate Challenges</h2>
+            <p>Push your coding skills with these mid-level questions!</p>
+            <button class="btn btn-primary flip-btn">Show Questions</button>
+          </div>
+          <div class="flip-back">
+            <h2 class="section-title">Intermediate Questions</h2>
+            <ul class="question-list">
+              ${[
+                "Implement a stack using two queues.",
+                "Find the longest substring without repeating characters.",
+                "Reverse a linked list in groups of k.",
+                "Write a program to check balanced parentheses.",
+                "Perform binary search recursively.",
+                "Find the intersection point of two linked lists.",
+                "Determine if a string is a rotation of another string.",
+                "Print all permutations of a string."
+              ].map(q => `<li>🧩 ${q}</li>`).join('')}
+            </ul>
+            <button class="btn btn-secondary flip-btn">Back</button>
+          </div>
+        </div>
+      </section>
+    `;
+
+    // ================= ADVANCED SECTION =================
+    sectionTemplates.advanced = `
+      <section class="feature-section flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <h2 class="section-title">🚀 Advanced Problems</h2>
+            <p>Challenge yourself with advanced DSA problems!</p>
+            <button class="btn btn-primary flip-btn">Show Questions</button>
+          </div>
+          <div class="flip-back">
+            <h2 class="section-title">Advanced DSA Questions</h2>
+            <ul class="question-list">
+              ${[
+                "Implement LRU Cache using linked list and hash map.",
+                "Solve the N-Queens problem using backtracking.",
+                "Detect and remove cycle in a linked list.",
+                "Find the maximum path sum in a binary tree.",
+                "Implement Dijkstra’s algorithm for shortest path.",
+                "Perform topological sort using DFS.",
+                "Find articulation points in a graph.",
+                "Solve the Word Ladder problem using BFS."
+              ].map(q => `<li>💡 ${q}</li>`).join('')}
+            </ul>
+            <button class="btn btn-secondary flip-btn">Back</button>
+          </div>
+        </div>
+      </section>
+    `;
+
+    // Function to change content dynamically
+    function loadSection(sectionName) {
+      const container = document.getElementById('dynamic-content');
+      if (!container) return;
+
+      container.classList.add('fade-out');
+      setTimeout(() => {
+        container.innerHTML = sectionTemplates[sectionName] || `<p>Coming soon...</p>`;
+        container.classList.remove('fade-out');
+        container.classList.add('fade-in');
+
+        // Handle notes save event
+        if (sectionName === 'personalnotes') {
+          const saved = localStorage.getItem('userNotes') || '';
+          const textArea = document.getElementById('userNotes');
+          if (textArea) textArea.value = saved;
+          document.getElementById('saveNotesBtn').addEventListener('click', () => {
+            localStorage.setItem('userNotes', textArea.value);
+            showNotification('Notes saved successfully!', 'success');
+          });
+        }
+      }, 300);
+    }
+
+    // Attach event listeners to nav links and feature cards
+    document.querySelectorAll('nav a, .feature-card').forEach(item => {
+      item.addEventListener('click', e => {
+        e.preventDefault();
+        const text = e.currentTarget.textContent.toLowerCase();
+
+        if (text.includes('leaderboard')) loadSection('leaderboard');
+        else if (text.includes('streak')) loadSection('streaks');
+        else if (text.includes('badge')) loadSection('badges');
+        else if (text.includes('road')) loadSection('roadmap');
+        else if (text.includes('practice')) loadSection('practice');
+        else if (text.includes('concept')) loadSection('notes');
+        else if (text.includes('dsa')) loadSection('dsa');
+        else if (text.includes('flash')) loadSection('flashcards');
+        else if (text.includes('note')) loadSection('personalnotes');
+      });
+    });
+
+    // CSS for fade effect and flip card animation
+    const style = document.createElement('style');
+    style.textContent = `
+      .fade-in { animation: fadeIn 0.6s ease forwards; }
+      .fade-out { animation: fadeOut 0.3s ease forwards; }
+      @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+      @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
+      .flip-card {
+        perspective: 1000px;
+      }
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.8s;
+      }
+      .flip-card.flipped .flip-inner {
+        transform: rotateY(180deg);
+      }
+      .flip-front, .flip-back {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        padding: 2rem;
+        border-radius: 15px;
+      }
+      .flip-back {
+        transform: rotateY(180deg);
+      }
+    `;
+    document.head.appendChild(style);
+    // Flip card handler for streaks and leaderboard
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('flip-btn')) {
+        const card = e.target.closest('.flip-card');
+        card.classList.toggle('flipped');
+      }
+    });
+    </script>
+
+    <!-- Backend Server Code -->
+    <script type="text/javascript">
+        // This section would normally be a separate Node.js file
+        // For demonstration, we're showing the backend code structure
+        console.log(`
+Backend Code Structure (normally in server.js):
+
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/codelearning');
+
+// Routes would include:
+// - POST /api/auth/register
+// - POST /api/auth/login  
+// - GET /api/auth/me
+// - PUT /api/auth/profile
+// - GET /api/progress
+// - POST /api/progress/solve
+// - GET /api/problems
+// - POST /api/problems/:id/submit
+
+app.listen(5000, () => {
+    console.log('Server running on port 5000');
+});
+        `);
+    </script>
+</script>
+<script>
+// ====== RIPPLE EFFECT FOR ALL CLICKABLE ELEMENTS ======
+const rippleTargets = document.querySelectorAll(
+  'button, .btn, .language-btn, .level-option, nav a, .feature-card'
+);
+
+rippleTargets.forEach(el => {
+  el.style.position = 'relative';
+  el.style.overflow = 'hidden';
+
+  el.addEventListener('click', e => {
+    const rect = el.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    ripple.style.position = 'absolute';
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.borderRadius = '50%';
+    ripple.style.pointerEvents = 'none';
+    ripple.style.background = 'rgba(255,255,255,0.25)';
+    ripple.style.transform = 'scale(0)';
+    ripple.style.opacity = '1';
+    ripple.style.animation = 'rippleExpand 0.6s ease-out';
+
+    el.appendChild(ripple);
+
+    ripple.addEventListener('animationend', () => {
+      ripple.remove();
+    });
+  });
+});
+
+// Add global ripple animation keyframes
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+@keyframes rippleExpand {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+`;
+document.head.appendChild(rippleStyle);
+</script>
+</script>
+<script>
+// ====== DYNAMIC PARALLAX MOVEMENT (SECTION & FEATURE CARDS) ======
+let activeSection = null;
+let activeFeature = null;
+
+const sections = document.querySelectorAll(
+  ".hero, .assessment-section, .features-grid, .progress-section, footer"
+);
+const featureCards = document.querySelectorAll(".feature");
+
+// Detect which section the cursor is currently over
+sections.forEach(section => {
+  section.addEventListener("mouseenter", () => {
+    activeSection = section;
+  });
+  section.addEventListener("mouseleave", () => {
+    if (activeSection === section) {
+      activeSection.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translate(0,0)";
+      activeSection = null;
+    }
+  });
+});
+
+// Detect which feature card the cursor is currently over
+featureCards.forEach(card => {
+  card.addEventListener("mouseenter", () => {
+    activeFeature = card;
+  });
+  card.addEventListener("mouseleave", () => {
+    if (activeFeature === card) {
+      activeFeature.style.transform = "perspective(800px) rotateX(0) rotateY(0) translate(0,0)";
+      activeFeature = null;
+    }
+  });
+});
+
+document.addEventListener("mousemove", (e) => {
+  const { innerWidth, innerHeight } = window;
+  const x = (e.clientX / innerWidth - 0.5) * 2;
+  const y = (e.clientY / innerHeight - 0.5) * 2;
+
+  // Move section under cursor
+  if (activeSection && !activeFeature) {
+    const intensity = 12;
+    const rotateX = y * intensity * -1;
+    const rotateY = x * intensity;
+    const translateX = x * intensity * 3;
+    const translateY = y * intensity * 3;
+
+    activeSection.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      translate(${translateX}px, ${translateY}px)
+    `;
+    activeSection.style.transition = "transform 0.12s ease-out";
+  }
+
+  // Move feature card under cursor
+  if (activeFeature) {
+    const intensity = 18;
+    const rotateX = y * intensity * -1;
+    const rotateY = x * intensity;
+    const translateX = x * intensity * 2;
+    const translateY = y * intensity * 2;
+
+    activeFeature.style.transform = `
+      perspective(800px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      translate(${translateX}px, ${translateY}px)
+    `;
+    activeFeature.style.transition = "transform 0.1s ease-out";
+  }
+});
+</script>
+</script>
+<!-- ====== DYNAMIC SPACE BACKGROUND (Blue-Cyan Galaxy) ====== -->
+<script>
+// ====== DYNAMIC SPACE BACKGROUND (Blue-Cyan Galaxy) ======
+const canvas = document.getElementById("space-bg");
+const ctx = canvas.getContext("2d");
+let stars = [];
+let w, h;
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+  stars = Array.from({ length: 250 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    z: Math.random() * w,
+    o: 0.3 + Math.random() * 0.7
+  }));
+}
+window.addEventListener("resize", resize);
+resize();
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 10, 25, 0.4)";
+  ctx.fillRect(0, 0, w, h);
+  for (let s of stars) {
+    s.z -= 3;
+    if (s.z <= 0) s.z = w;
+    let k = 128.0 / s.z;
+    let px = s.x * k + w / 2;
+    let py = s.y * k + h / 2;
+    if (px >= 0 && px <= w && py >= 0 && py <= h) {
+      let size = (1 - s.z / w) * 2;
+      const gradient = ctx.createRadialGradient(px, py, 0, px, py, size * 2);
+      gradient.addColorStop(0, `rgba(0,255,255,${s.o})`);
+      gradient.addColorStop(1, "rgba(0, 80, 180, 0)");
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(px, py, size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Parallax cursor movement
+document.addEventListener("mousemove", (e) => {
+  const offsetX = (e.clientX / w - 0.5) * 30;
+  const offsetY = (e.clientY / h - 0.5) * 30;
+  canvas.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+});
+</script>
+</body>
+</html>
+    // ===== Roadmap Overlay (Flowchart-Style Roadmaps) =====
+    // Flowchart-style roadmaps
+    const flowRoadmaps = {
+      Python: [
+        "Learn syntax, variables, and data types",
+        "Master loops, conditionals, and functions",
+        "Learn data structures: lists, sets, dictionaries",
+        "Understand OOP concepts (class, object, inheritance)",
+        "Explore libraries: NumPy, Pandas, Matplotlib",
+        "Build small projects: calculator, quiz, file automation",
+        "Start DSA with Python",
+        "Learn frameworks: Flask, Django"
+      ],
+      "C++": [
+        "Setup compiler and IDE",
+        "Understand syntax, loops, arrays, and pointers",
+        "Learn OOP: classes, constructors, inheritance",
+        "Study memory management and dynamic allocation",
+        "Explore STL: vectors, sets, maps",
+        "Practice problems on arrays, linked lists, stacks",
+        "Build small projects and mini-games"
+      ],
+      Java: [
+        "Understand Java syntax and data types",
+        "Dive into OOP: classes, interfaces, inheritance",
+        "Learn exception handling and I/O",
+        "Explore Collections and Generics",
+        "Understand multithreading",
+        "Practice DSA in Java",
+        "Learn frameworks: Spring Boot, Android basics"
+      ],
+      JavaScript: [
+        "Learn syntax, variables, loops, and functions",
+        "Understand DOM manipulation",
+        "Master ES6+ features (arrow functions, modules)",
+        "Learn async JS: promises, async/await",
+        "Explore frameworks: React or Vue",
+        "Build mini projects: to-do, weather app, etc.",
+        "Learn Node.js and Express for backend"
+      ]
+    };
+
+    // Attach data-lang to language buttons for consistency
+    document.querySelectorAll(".language-btn").forEach(btn => {
+      btn.dataset.lang = btn.textContent.trim();
+    });
+
+    function showFlowRoadmap(lang) {
+      const roadmap = flowRoadmaps[lang] || ["No roadmap available yet"];
+      const overlay = document.getElementById("roadmapOverlay");
+      const title = document.getElementById("roadmapTitle");
+      const flowContainer = document.getElementById("roadmapFlow");
+      
+      title.textContent = `${lang} Beginner Roadmap`;
+      flowContainer.innerHTML = roadmap.map(step => `<div class="flow-step">${step}</div>`).join("");
+      
+      overlay.style.display = "flex";
+      overlay.style.opacity = 1;
+    }
+
+    document.getElementById("closeRoadmap").addEventListener("click", () => {
+      const overlay = document.getElementById("roadmapOverlay");
+      overlay.style.opacity = 0;
+      setTimeout(() => overlay.style.display = "none", 300);
+    });
+    <script>
+    // Smooth scroll to Learning Features when clicking "Start Your Journey"
+    document.addEventListener('DOMContentLoaded', function() {
+      var startJourneyBtn = document.getElementById('startJourneyBtn');
+      if (startJourneyBtn) {
+        startJourneyBtn.addEventListener('click', () => {
+          const learningSection = document.querySelector('h2.section-title');
+          if (learningSection) {
+            learningSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+    </script>
+    // ====== GET STARTED BUTTON ACTION ======
+    const getStartedBtn = document.getElementById("getStartedBtn");
+    if (getStartedBtn) {
+      getStartedBtn.addEventListener("click", () => {
+        const registrationSection = document.querySelector(".registration-section");
+        if (registrationSection) {
+          registrationSection.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          alert("Registration section not found!");
+        }
+      });
+    }
+
+    // ====== REGISTER BUTTON ACTION ======
+    const registerBtn = document.getElementById("registerBtn");
+    if (registerBtn) {
+      registerBtn.addEventListener("click", () => {
+        const name = document.getElementById("regName")?.value.trim();
+        const email = document.getElementById("regEmail")?.value.trim();
+        const password = document.getElementById("regPassword")?.value.trim();
+
+        if (!name || !email || !password) {
+          alert("Please fill in all details before registering.");
+          return;
+        }
+
+        alert("You've registered successfully!");
+      });
+    }
+</body>
+<div class="popup-overlay" id="successPopup">
+  <div class="popup-box">
+    <h3>🎉 Registration Successful!</h3>
+    <p>Welcome to LogicLift! You’re now part of our learning community.</p>
+    <button id="closePopup">OK</button>
+  </div>
+</div>
+    // ===== Advanced Learning Features Section Feature Card Functions =====
+    function openAIGuidance() { showNotification('Opening AI-Powered Guidance...', 'info'); }
+    function openCodeEditor() { showNotification('Launching Interactive Code Editor...', 'info'); }
+    function openDynamicRoadmaps() { showNotification('Loading Dynamic Roadmaps...', 'info'); }
+    function openGamifiedLearning() { showNotification('Opening Gamified Learning Dashboard...', 'info'); }
+    function openProgressAnalytics() { showNotification('Accessing Progress Analytics...', 'info'); }
+    function openCommunitySupport() { showNotification('Redirecting to Community Support...', 'info'); }
+        /* Magnify buttons on hover */
+        button:hover, .btn:hover {
+          transform: scale(1.15);
+          transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+<script>
+// Interactive Gamified Learning functionality
+let xp = 1200, badges = 8, streak = 5;
+
+const xpCount = document.getElementById('xpCount');
+const badgesCount = document.getElementById('badgesCount');
+const streakCount = document.getElementById('streakCount');
+
+document.getElementById('gainXPBtn').addEventListener('click', () => {
+  xp += 50;
+  xpCount.textContent = xp;
+  alert(`+50 XP Earned! Total XP: ${xp}`);
+});
+
+document.getElementById('unlockBadgeBtn').addEventListener('click', () => {
+  badges += 1;
+  badgesCount.textContent = badges;
+  alert(`🎖️ New Badge Unlocked! Total Badges: ${badges}`);
+});
+
+document.getElementById('increaseStreakBtn').addEventListener('click', () => {
+  streak += 1;
+  streakCount.textContent = `${streak} Days`;
+  alert(`🔥 Streak Continued! ${streak} Days Strong!`);
+});
+</script>
+    // --- AI Guidance ---
+    document.addEventListener('DOMContentLoaded', function() {
+      // AI Guidance modal interaction
+      var askAIButton = document.getElementById('askAIButton');
+      if (askAIButton) {
+        askAIButton.addEventListener('click', () => {
+          const question = document.getElementById('aiQuestion').value.trim();
+          const response = document.getElementById('aiResponse');
+          if (question === "") {
+            response.textContent = "Please enter a question!";
+          } else {
+            response.textContent = `AI says: To solve "${question}", focus on logic breakdown and syntax validation.`;
+          }
+        });
+      }
+
+      // Code Editor modal interaction
+      var runCodeButton = document.getElementById('runCodeButton');
+      if (runCodeButton) {
+        runCodeButton.addEventListener('click', () => {
+          const code = document.getElementById('codeArea').value;
+          const output = document.getElementById('codeOutput');
+          try {
+            const result = eval(code);
+            output.textContent = result === undefined ? "Code executed successfully!" : result;
+          } catch (err) {
+            output.textContent = "Error: " + err.message;
+          }
+        });
+      }
+
+      // Dynamic Roadmaps modal interaction
+      var generateRoadmap = document.getElementById('generateRoadmap');
+      if (generateRoadmap) {
+        generateRoadmap.addEventListener('click', () => {
+          document.getElementById('roadmapDisplay').innerHTML =
+            "🚀 Your roadmap: Basics → Functions → OOP → DSA → Mini Project → Advanced Concepts!";
+        });
+      }
+
+      // Progress Analytics modal: draw simple chart
+      const canvas = document.getElementById('analyticsChart');
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#00e6ff';
+        ctx.fillRect(50, 150, 50, -100);
+        ctx.fillRect(150, 150, 50, -80);
+        ctx.fillRect(250, 150, 50, -120);
+        ctx.fillRect(350, 150, 50, -60);
+      }
+    });
+
+    // --- Open Modal Functions ---
+    function openAIGuidance() {
+      document.getElementById('aiGuidanceModal').style.display = 'block';
+    }
+    function openCodeEditor() {
+      document.getElementById('codeEditorModal').style.display = 'block';
+    }
+    function openDynamicRoadmaps() {
+      document.getElementById('dynamicRoadmapsModal').style.display = 'block';
+    }
+    function openProgressAnalytics() {
+      document.getElementById('progressAnalyticsModal').style.display = 'block';
+    }
